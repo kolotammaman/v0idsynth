@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Signal Decay" category="fx" tags="broken,atonal,glitch"/>
+  <v0idSynthParams>
+    <!-- Fully percussive poly trigger. S+H LFO1 at 0.35Hz randomly steps the pitch
+         every ~2.9s — each press lands on a different note. LFO2 square at 12Hz
+         chops the amp into a stutter just below tremolo frequency.
+         BP filter at 2800Hz concentrates energy into a ringing band.
+         Env2 spikes resonance on each hit; Env3 blasts the filter open then shuts. -->
+    <PARAM id="osc1.waveform" value="0"/>
+    <PARAM id="osc1.drive" value="0.72"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.0"/>
+    <PARAM id="osc2.root_note" value="60"/>
+    <PARAM id="osc2.tune" value="0.0"/>
+    <PARAM id="osc2.loop" value="0"/>
+    <PARAM id="osc2.gain" value="0.0"/>
+    <PARAM id="osc2.hpf" value="20.0"/>
+    <PARAM id="osc2.lpf" value="20000.0"/>
+    <PARAM id="filter.cutoff" value="2800.0"/>
+    <PARAM id="filter.resonance" value="0.62"/>
+    <PARAM id="filter.mode_blend" value="2.0"/>
+    <PARAM id="filter.drive" value="0.48"/>
+    <PARAM id="filter.env_amount" value="0.5"/>
+    <PARAM id="filter.env.attack" value="0.001"/>
+    <PARAM id="filter.env.decay" value="0.45"/>
+    <PARAM id="filter.env.sustain" value="0.18"/>
+    <PARAM id="filter.env.release" value="2.2"/>
+    <PARAM id="amp.env.attack" value="0.001"/>
+    <PARAM id="amp.env.decay" value="0.55"/>
+    <PARAM id="amp.env.sustain" value="0.0"/>
+    <PARAM id="amp.env.release" value="2.8"/>
+    <PARAM id="voice.mode" value="0"/>
+    <PARAM id="voice.glide" value="0.0"/>
+    <PARAM id="voice.unison_voices" value="4"/>
+    <PARAM id="voice.unison_detune" value="0.32"/>
+    <PARAM id="voice.unison_spread" value="0.8"/>
+    <PARAM id="voice.drift" value="0.48"/>
+    <PARAM id="mod.lfo1.rate" value="0.35"/>
+    <PARAM id="mod.lfo1.waveform" value="4"/>
+    <PARAM id="mod.lfo1.depth" value="0.88"/>
+    <PARAM id="mod.lfo2.rate" value="12.0"/>
+    <PARAM id="mod.lfo2.waveform" value="3"/>
+    <PARAM id="mod.lfo2.depth" value="0.62"/>
+    <PARAM id="mod.lfo3.rate" value="0.065"/>
+    <PARAM id="mod.lfo3.waveform" value="0"/>
+    <PARAM id="mod.lfo3.depth" value="0.52"/>
+    <PARAM id="mod.lfo4.rate" value="3.8"/>
+    <PARAM id="mod.lfo4.waveform" value="0"/>
+    <PARAM id="mod.lfo4.depth" value="0.28"/>
+    <PARAM id="mod.env1.attack" value="0.001"/>
+    <PARAM id="mod.env1.decay" value="0.28"/>
+    <PARAM id="mod.env1.sustain" value="0.0"/>
+    <PARAM id="mod.env1.release" value="0.28"/>
+    <PARAM id="mod.env2.attack" value="0.001"/>
+    <PARAM id="mod.env2.decay" value="0.75"/>
+    <PARAM id="mod.env2.sustain" value="0.0"/>
+    <PARAM id="mod.env2.release" value="1.0"/>
+    <PARAM id="mod.env3.attack" value="0.001"/>
+    <PARAM id="mod.env3.decay" value="0.35"/>
+    <PARAM id="mod.env3.sustain" value="0.25"/>
+    <PARAM id="mod.env3.release" value="1.5"/>
+    <PARAM id="mod.env4.attack" value="0.001"/>
+    <PARAM id="mod.env4.decay" value="1.8"/>
+    <PARAM id="mod.env4.sustain" value="0.0"/>
+    <PARAM id="mod.env4.release" value="2.5"/>
+    <PARAM id="master.gain" value="-6.0"/>
+    <ModMatrix>
+      <!-- LFO1 S+H 0.35Hz → pitch: 0.88×0.32×1200=338¢ random step every ~2.9s -->
+      <Route source="0" dest="2" depth="0.32"/>
+      <!-- LFO2 square 12Hz → amp: −0.62×0.65=−0.403 stutter — not tremolo, something breaking -->
+      <Route source="1" dest="4" depth="-0.65"/>
+      <!-- LFO3 sine 0.065Hz → filter: 0.52×0.42×10k=2184Hz slow BP band drift -->
+      <Route source="2" dest="0" depth="0.42"/>
+      <!-- LFO4 sine 3.8Hz → resonance: 0.28×0.32×0.5=0.045 fast resonance wobble -->
+      <Route source="3" dest="1" depth="0.32"/>
+      <!-- Env1 → pitch: −72¢ downward blip on each trigger — the signal slips -->
+      <Route source="4" dest="2" depth="-0.06"/>
+      <!-- Env2 → resonance: +0.36 spike per hit (res peaks at 0.98), then dies -->
+      <Route source="5" dest="1" depth="0.72"/>
+      <!-- Env3 → filter: +5200Hz blast through BP, narrows back over 350ms -->
+      <Route source="6" dest="0" depth="0.52"/>
+      <!-- Drift → pitch: 0.48 drift × 0.15 scale = high per-voice pitch scatter -->
+      <Route source="8" dest="2" depth="0.15"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>

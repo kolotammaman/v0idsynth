@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Wrong Room" category="pad" tags="unsettling,almost-right,drift"/>
+  <v0idSynthParams>
+    <!-- Saw: beating unison voices create inherent wrongness through interference -->
+    <PARAM id="osc1.waveform" value="0"/>
+    <PARAM id="osc1.drive" value="0.08"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.0"/>
+    <!-- Brighter than the dark pads — the wrongness is exposed, not hidden -->
+    <PARAM id="filter.cutoff" value="1200.0"/>
+    <PARAM id="filter.resonance" value="0.4"/>
+    <PARAM id="filter.mode_blend" value="0.0"/>
+    <PARAM id="filter.drive" value="0.12"/>
+    <PARAM id="filter.env_amount" value="0.0"/>
+    <PARAM id="filter.env.attack" value="2.0"/>
+    <PARAM id="filter.env.decay" value="0.5"/>
+    <PARAM id="filter.env.sustain" value="0.6"/>
+    <PARAM id="filter.env.release" value="4.0"/>
+    <!-- 1.5s: you step in before you realize -->
+    <PARAM id="amp.env.attack" value="1.5"/>
+    <PARAM id="amp.env.decay" value="0.15"/>
+    <PARAM id="amp.env.sustain" value="0.88"/>
+    <PARAM id="amp.env.release" value="7.0"/>
+    <PARAM id="voice.mode" value="0"/>
+    <PARAM id="voice.glide" value="0.0"/>
+    <!-- 6 voices: dense beating that never resolves into consonance -->
+    <PARAM id="voice.unison_voices" value="6"/>
+    <PARAM id="voice.unison_detune" value="0.28"/>
+    <PARAM id="voice.unison_spread" value="0.88"/>
+    <!-- High drift: the wrongness is organic, not systematic -->
+    <PARAM id="voice.drift" value="0.32"/>
+    <!-- LFO1 S&H: random slow pitch wander — spatial disorientation -->
+    <PARAM id="mod.lfo1.rate" value="0.04"/>
+    <PARAM id="mod.lfo1.waveform" value="4"/>
+    <PARAM id="mod.lfo1.depth" value="0.2"/>
+    <!-- LFO2: slow filter anxiety, something pressing on you from above -->
+    <PARAM id="mod.lfo2.rate" value="0.06"/>
+    <PARAM id="mod.lfo2.waveform" value="1"/>
+    <PARAM id="mod.lfo2.depth" value="0.18"/>
+    <PARAM id="mod.lfo3.rate" value="1.0"/>
+    <PARAM id="mod.lfo3.waveform" value="0"/>
+    <PARAM id="mod.lfo3.depth" value="0.0"/>
+    <PARAM id="mod.lfo4.rate" value="1.0"/>
+    <PARAM id="mod.lfo4.waveform" value="0"/>
+    <PARAM id="mod.lfo4.depth" value="0.0"/>
+    <PARAM id="mod.env1.attack" value="0.01"/>
+    <PARAM id="mod.env1.decay" value="0.3"/>
+    <PARAM id="mod.env1.sustain" value="0.5"/>
+    <PARAM id="mod.env1.release" value="0.5"/>
+    <PARAM id="mod.env2.attack" value="0.01"/>
+    <PARAM id="mod.env2.decay" value="0.3"/>
+    <PARAM id="mod.env2.sustain" value="0.5"/>
+    <PARAM id="mod.env2.release" value="0.5"/>
+    <PARAM id="mod.env3.attack" value="0.01"/>
+    <PARAM id="mod.env3.decay" value="0.3"/>
+    <PARAM id="mod.env3.sustain" value="0.5"/>
+    <PARAM id="mod.env3.release" value="0.5"/>
+    <PARAM id="mod.env4.attack" value="0.01"/>
+    <PARAM id="mod.env4.decay" value="0.3"/>
+    <PARAM id="mod.env4.sustain" value="0.5"/>
+    <PARAM id="mod.env4.release" value="0.5"/>
+    <PARAM id="master.gain" value="-6.0"/>
+    <ModMatrix>
+      <!-- LFO1 S&H 0.04Hz → pitch: random slow wandering, never quite right -->
+      <Route source="0" dest="2" depth="0.08"/>
+      <!-- LFO2 triangle 0.06Hz → filter: slow filter anxiety -->
+      <Route source="1" dest="0" depth="0.12"/>
+      <!-- Drift → pitch: organic wrongness, not LFO symmetry -->
+      <Route source="8" dest="2" depth="0.15"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>

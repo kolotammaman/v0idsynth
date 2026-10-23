@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Fever Architecture" category="pad" tags="unease,rotating,feverish"/>
+  <v0idSynthParams>
+    <!-- Six unison voices, each assigned a golden-ratio LFO phase offset.
+         Two LFOs push the filter at different rates; a third pulses the resonance.
+         Env4 swell over 9 seconds: the building materialises around you. -->
+    <PARAM id="osc1.waveform" value="0"/>
+    <PARAM id="osc1.drive" value="0.28"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.0"/>
+    <PARAM id="osc2.root_note" value="60"/>
+    <PARAM id="osc2.tune" value="0.0"/>
+    <PARAM id="osc2.loop" value="0"/>
+    <PARAM id="osc2.gain" value="0.0"/>
+    <PARAM id="osc2.hpf" value="20.0"/>
+    <PARAM id="osc2.lpf" value="20000.0"/>
+    <PARAM id="filter.cutoff" value="400.0"/>
+    <PARAM id="filter.resonance" value="0.52"/>
+    <PARAM id="filter.mode_blend" value="0.0"/>
+    <PARAM id="filter.drive" value="0.25"/>
+    <PARAM id="filter.env_amount" value="0.25"/>
+    <PARAM id="filter.env.attack" value="2.2"/>
+    <PARAM id="filter.env.decay" value="3.5"/>
+    <PARAM id="filter.env.sustain" value="0.55"/>
+    <PARAM id="filter.env.release" value="8.5"/>
+    <PARAM id="amp.env.attack" value="0.32"/>
+    <PARAM id="amp.env.decay" value="0.15"/>
+    <PARAM id="amp.env.sustain" value="1.0"/>
+    <PARAM id="amp.env.release" value="7.0"/>
+    <PARAM id="voice.mode" value="0"/>
+    <PARAM id="voice.glide" value="0.0"/>
+    <PARAM id="voice.unison_voices" value="6"/>
+    <PARAM id="voice.unison_detune" value="0.38"/>
+    <PARAM id="voice.unison_spread" value="0.88"/>
+    <PARAM id="voice.drift" value="0.22"/>
+    <PARAM id="mod.lfo1.rate" value="0.05"/>
+    <PARAM id="mod.lfo1.waveform" value="0"/>
+    <PARAM id="mod.lfo1.depth" value="0.45"/>
+    <PARAM id="mod.lfo2.rate" value="0.09"/>
+    <PARAM id="mod.lfo2.waveform" value="1"/>
+    <PARAM id="mod.lfo2.depth" value="0.62"/>
+    <PARAM id="mod.lfo3.rate" value="0.13"/>
+    <PARAM id="mod.lfo3.waveform" value="3"/>
+    <PARAM id="mod.lfo3.depth" value="0.38"/>
+    <PARAM id="mod.lfo4.rate" value="0.023"/>
+    <PARAM id="mod.lfo4.waveform" value="2"/>
+    <PARAM id="mod.lfo4.depth" value="0.52"/>
+    <PARAM id="mod.env1.attack" value="5.5"/>
+    <PARAM id="mod.env1.decay" value="4.0"/>
+    <PARAM id="mod.env1.sustain" value="0.4"/>
+    <PARAM id="mod.env1.release" value="10.0"/>
+    <PARAM id="mod.env2.attack" value="0.08"/>
+    <PARAM id="mod.env2.decay" value="2.0"/>
+    <PARAM id="mod.env2.sustain" value="0.0"/>
+    <PARAM id="mod.env2.release" value="3.0"/>
+    <PARAM id="mod.env3.attack" value="0.15"/>
+    <PARAM id="mod.env3.decay" value="0.05"/>
+    <PARAM id="mod.env3.sustain" value="1.0"/>
+    <PARAM id="mod.env3.release" value="6.0"/>
+    <PARAM id="mod.env4.attack" value="9.0"/>
+    <PARAM id="mod.env4.decay" value="2.5"/>
+    <PARAM id="mod.env4.sustain" value="0.85"/>
+    <PARAM id="mod.env4.release" value="12.0"/>
+    <PARAM id="master.gain" value="-6.0"/>
+    <ModMatrix>
+      <!-- LFO1 sine 0.05Hz → pitch: 0.45×0.028×1200=15¢ vibrato — each voice offset -->
+      <Route source="0" dest="2" depth="0.028"/>
+      <!-- LFO2 tri 0.09Hz → filter: 0.62×0.42×10k=2604Hz breathing cycle ~11s -->
+      <Route source="1" dest="0" depth="0.42"/>
+      <!-- LFO3 square 0.13Hz → resonance: 0.38×0.48×0.5=0.091 hard pulse ~7.7s -->
+      <Route source="2" dest="1" depth="0.48"/>
+      <!-- LFO4 saw 0.023Hz → filter: 0.52×0.32×10k=1664Hz relentless upward push ~43s -->
+      <Route source="3" dest="0" depth="0.32"/>
+      <!-- Env1 → filter: up to 5800Hz opening over 5.5s attack — the reveal -->
+      <Route source="4" dest="0" depth="0.58"/>
+      <!-- Env2 → resonance: +0.325 burst on attack, decays over 2s — initial colour -->
+      <Route source="5" dest="1" depth="0.65"/>
+      <!-- Env4 → amp: +25% swell over 9s — the pad grows louder as you hold it -->
+      <Route source="7" dest="4" depth="0.25"/>
+      <!-- Drift → pitch: per-voice instability across the six voices -->
+      <Route source="8" dest="2" depth="0.08"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>

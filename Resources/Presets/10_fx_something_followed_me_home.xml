@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Something Followed Me Home" category="fx" tags="dread,slow-build,peripheral"/>
+  <v0idSynthParams>
+    <!-- Saw at the floor of the filter — once it arrives it stays -->
+    <PARAM id="osc1.waveform" value="0"/>
+    <PARAM id="osc1.drive" value="0.5"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.0"/>
+    <PARAM id="filter.cutoff" value="400.0"/>
+    <PARAM id="filter.resonance" value="0.8"/>
+    <PARAM id="filter.mode_blend" value="0.0"/>
+    <PARAM id="filter.drive" value="0.5"/>
+    <PARAM id="filter.env_amount" value="0.0"/>
+    <PARAM id="filter.env.attack" value="3.0"/>
+    <PARAM id="filter.env.decay" value="2.0"/>
+    <PARAM id="filter.env.sustain" value="0.35"/>
+    <PARAM id="filter.env.release" value="7.0"/>
+    <PARAM id="amp.env.attack" value="0.4"/>
+    <PARAM id="amp.env.decay" value="0.1"/>
+    <PARAM id="amp.env.sustain" value="1.0"/>
+    <PARAM id="amp.env.release" value="8.0"/>
+    <PARAM id="voice.mode" value="0"/>
+    <PARAM id="voice.glide" value="0.0"/>
+    <PARAM id="voice.unison_voices" value="4"/>
+    <PARAM id="voice.unison_detune" value="0.32"/>
+    <PARAM id="voice.unison_spread" value="0.8"/>
+    <PARAM id="voice.drift" value="0.35"/>
+    <!-- Mod Env1: the very slow filter opening — 3s to crack open, sustains partly, 7s tail -->
+    <PARAM id="mod.lfo1.rate" value="0.04"/>
+    <PARAM id="mod.lfo1.waveform" value="2"/>
+    <PARAM id="mod.lfo1.depth" value="0.6"/>
+    <PARAM id="mod.lfo2.rate" value="0.06"/>
+    <PARAM id="mod.lfo2.waveform" value="0"/>
+    <PARAM id="mod.lfo2.depth" value="0.25"/>
+    <PARAM id="mod.lfo3.rate" value="1.0"/>
+    <PARAM id="mod.lfo3.waveform" value="0"/>
+    <PARAM id="mod.lfo3.depth" value="0.0"/>
+    <PARAM id="mod.lfo4.rate" value="1.0"/>
+    <PARAM id="mod.lfo4.waveform" value="0"/>
+    <PARAM id="mod.lfo4.depth" value="0.0"/>
+    <PARAM id="mod.env1.attack" value="3.0"/>
+    <PARAM id="mod.env1.decay" value="2.5"/>
+    <PARAM id="mod.env1.sustain" value="0.4"/>
+    <PARAM id="mod.env1.release" value="7.0"/>
+    <PARAM id="mod.env2.attack" value="0.01"/>
+    <PARAM id="mod.env2.decay" value="0.3"/>
+    <PARAM id="mod.env2.sustain" value="0.5"/>
+    <PARAM id="mod.env2.release" value="0.5"/>
+    <PARAM id="mod.env3.attack" value="0.01"/>
+    <PARAM id="mod.env3.decay" value="0.3"/>
+    <PARAM id="mod.env3.sustain" value="0.5"/>
+    <PARAM id="mod.env3.release" value="0.5"/>
+    <PARAM id="mod.env4.attack" value="0.01"/>
+    <PARAM id="mod.env4.decay" value="0.3"/>
+    <PARAM id="mod.env4.sustain" value="0.5"/>
+    <PARAM id="mod.env4.release" value="0.5"/>
+    <PARAM id="master.gain" value="-9.0"/>
+    <ModMatrix>
+      <!-- Env1 → filter: very slow opening, 0.8×10k = up to 8000Hz over 3s attack -->
+      <Route source="4" dest="0" depth="0.8"/>
+      <!-- LFO1 saw 0.04Hz → pitch: very slow 25s sag of +-14 cents — the thing leans on you -->
+      <Route source="0" dest="2" depth="0.02"/>
+      <!-- LFO2 sine 0.06Hz → pitch: 0.25×0.08×1200 = 24 cents slow downward sag -->
+      <Route source="1" dest="2" depth="-0.08"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>

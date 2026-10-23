@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Frequency Sickness" category="lead" tags="queasy,unstable,hollow"/>
+  <v0idSynthParams>
+    <!-- Mono lead with short glide. Three simultaneous pitch modulation paths
+         fight at different timescales: LFO1 classical vibrato, LFO3 S+H jitter,
+         Env4 slow downward drift. Env2 bends the note up 66¢ on attack —
+         it enters from below, like the pitch can't find its footing. -->
+    <PARAM id="osc1.waveform" value="2"/>
+    <PARAM id="osc1.drive" value="0.22"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.25"/>
+    <PARAM id="osc2.root_note" value="60"/>
+    <PARAM id="osc2.tune" value="0.0"/>
+    <PARAM id="osc2.loop" value="0"/>
+    <PARAM id="osc2.gain" value="0.0"/>
+    <PARAM id="osc2.hpf" value="20.0"/>
+    <PARAM id="osc2.lpf" value="20000.0"/>
+    <PARAM id="filter.cutoff" value="1400.0"/>
+    <PARAM id="filter.resonance" value="0.62"/>
+    <PARAM id="filter.mode_blend" value="0.0"/>
+    <PARAM id="filter.drive" value="0.18"/>
+    <PARAM id="filter.env_amount" value="0.4"/>
+    <PARAM id="filter.env.attack" value="0.18"/>
+    <PARAM id="filter.env.decay" value="0.9"/>
+    <PARAM id="filter.env.sustain" value="0.65"/>
+    <PARAM id="filter.env.release" value="1.8"/>
+    <PARAM id="amp.env.attack" value="0.04"/>
+    <PARAM id="amp.env.decay" value="0.12"/>
+    <PARAM id="amp.env.sustain" value="1.0"/>
+    <PARAM id="amp.env.release" value="0.9"/>
+    <PARAM id="voice.mode" value="1"/>
+    <PARAM id="voice.glide" value="0.18"/>
+    <PARAM id="voice.unison_voices" value="1"/>
+    <PARAM id="voice.unison_detune" value="0.0"/>
+    <PARAM id="voice.unison_spread" value="0.0"/>
+    <PARAM id="voice.drift" value="0.28"/>
+    <PARAM id="mod.lfo1.rate" value="5.2"/>
+    <PARAM id="mod.lfo1.waveform" value="0"/>
+    <PARAM id="mod.lfo1.depth" value="0.32"/>
+    <PARAM id="mod.lfo2.rate" value="0.19"/>
+    <PARAM id="mod.lfo2.waveform" value="1"/>
+    <PARAM id="mod.lfo2.depth" value="0.52"/>
+    <PARAM id="mod.lfo3.rate" value="2.3"/>
+    <PARAM id="mod.lfo3.waveform" value="4"/>
+    <PARAM id="mod.lfo3.depth" value="0.28"/>
+    <PARAM id="mod.lfo4.rate" value="0.28"/>
+    <PARAM id="mod.lfo4.waveform" value="0"/>
+    <PARAM id="mod.lfo4.depth" value="0.38"/>
+    <PARAM id="mod.env1.attack" value="0.55"/>
+    <PARAM id="mod.env1.decay" value="2.2"/>
+    <PARAM id="mod.env1.sustain" value="0.38"/>
+    <PARAM id="mod.env1.release" value="3.5"/>
+    <PARAM id="mod.env2.attack" value="0.001"/>
+    <PARAM id="mod.env2.decay" value="0.12"/>
+    <PARAM id="mod.env2.sustain" value="0.0"/>
+    <PARAM id="mod.env2.release" value="0.08"/>
+    <PARAM id="mod.env3.attack" value="0.08"/>
+    <PARAM id="mod.env3.decay" value="1.8"/>
+    <PARAM id="mod.env3.sustain" value="0.25"/>
+    <PARAM id="mod.env3.release" value="2.5"/>
+    <PARAM id="mod.env4.attack" value="2.5"/>
+    <PARAM id="mod.env4.decay" value="1.5"/>
+    <PARAM id="mod.env4.sustain" value="0.55"/>
+    <PARAM id="mod.env4.release" value="4.0"/>
+    <PARAM id="master.gain" value="-4.0"/>
+    <ModMatrix>
+      <!-- LFO1 sine 5.2Hz → pitch: 0.32×0.026×1200=10¢ vibrato -->
+      <Route source="0" dest="2" depth="0.026"/>
+      <!-- LFO2 tri 0.19Hz → filter: 0.52×0.52×10k=2704Hz slow sweep -->
+      <Route source="1" dest="0" depth="0.52"/>
+      <!-- LFO3 S+H 2.3Hz → pitch: 0.28×0.012×1200=4¢ jitter — stepping instability -->
+      <Route source="2" dest="2" depth="0.012"/>
+      <!-- LFO4 sine 0.28Hz → osc mix: 0.38×0.28=0.106 character morph cycle ~3.6s -->
+      <Route source="3" dest="3" depth="0.28"/>
+      <!-- Env1 → filter: up to 4800Hz opening after 0.55s attack, settles at 38% -->
+      <Route source="4" dest="0" depth="0.48"/>
+      <!-- Env2 → pitch: +66¢ upward blip on attack — the note bends in from below -->
+      <Route source="5" dest="2" depth="0.055"/>
+      <!-- Env3 → resonance: +0.29 swell over 80ms, decays over 1.8s -->
+      <Route source="6" dest="1" depth="0.58"/>
+      <!-- Env4 → pitch: −34¢ slow downward drift over 2.5s — the queasy sag -->
+      <Route source="7" dest="2" depth="-0.028"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>

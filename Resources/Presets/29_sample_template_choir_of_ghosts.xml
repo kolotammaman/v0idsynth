@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Choir of Ghosts Template" category="sample" tags="template,choral,haunted-ensemble"/>
+  <v0idSynthParams>
+    <!-- Template: load your choral or voice sample; the settings breathe it to life -->
+    <PARAM id="osc1.waveform" value="0"/>
+    <PARAM id="osc1.drive" value="0.08"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.0"/>
+    <!-- Open enough to preserve vocal timbre -->
+    <PARAM id="filter.cutoff" value="3500.0"/>
+    <PARAM id="filter.resonance" value="0.08"/>
+    <PARAM id="filter.mode_blend" value="0.0"/>
+    <PARAM id="filter.drive" value="0.05"/>
+    <PARAM id="filter.env_amount" value="0.0"/>
+    <PARAM id="filter.env.attack" value="2.0"/>
+    <PARAM id="filter.env.decay" value="0.8"/>
+    <PARAM id="filter.env.sustain" value="0.7"/>
+    <PARAM id="filter.env.release" value="5.0"/>
+    <!-- Voices enter slowly, linger long -->
+    <PARAM id="amp.env.attack" value="2.5"/>
+    <PARAM id="amp.env.decay" value="0.4"/>
+    <PARAM id="amp.env.sustain" value="0.9"/>
+    <PARAM id="amp.env.release" value="6.0"/>
+    <PARAM id="voice.mode" value="2"/>
+    <PARAM id="voice.glide" value="0.0"/>
+    <!-- 6 voices: the full weight of an ensemble that isn't quite there -->
+    <PARAM id="voice.unison_voices" value="6"/>
+    <PARAM id="voice.unison_detune" value="0.12"/>
+    <PARAM id="voice.unison_spread" value="0.9"/>
+    <PARAM id="voice.drift" value="0.15"/>
+    <!-- LFO1: natural choir vibrato (5.5Hz) -->
+    <PARAM id="mod.lfo1.rate" value="5.5"/>
+    <PARAM id="mod.lfo1.waveform" value="0"/>
+    <PARAM id="mod.lfo1.depth" value="0.12"/>
+    <!-- LFO2: slow tonal evolution, voices darkening and brightening -->
+    <PARAM id="mod.lfo2.rate" value="0.06"/>
+    <PARAM id="mod.lfo2.waveform" value="1"/>
+    <PARAM id="mod.lfo2.depth" value="0.2"/>
+    <PARAM id="mod.lfo3.rate" value="1.0"/>
+    <PARAM id="mod.lfo3.waveform" value="0"/>
+    <PARAM id="mod.lfo3.depth" value="0.0"/>
+    <PARAM id="mod.lfo4.rate" value="1.0"/>
+    <PARAM id="mod.lfo4.waveform" value="0"/>
+    <PARAM id="mod.lfo4.depth" value="0.0"/>
+    <PARAM id="mod.env1.attack" value="0.01"/>
+    <PARAM id="mod.env1.decay" value="0.3"/>
+    <PARAM id="mod.env1.sustain" value="0.5"/>
+    <PARAM id="mod.env1.release" value="0.5"/>
+    <PARAM id="mod.env2.attack" value="0.01"/>
+    <PARAM id="mod.env2.decay" value="0.3"/>
+    <PARAM id="mod.env2.sustain" value="0.5"/>
+    <PARAM id="mod.env2.release" value="0.5"/>
+    <PARAM id="mod.env3.attack" value="0.01"/>
+    <PARAM id="mod.env3.decay" value="0.3"/>
+    <PARAM id="mod.env3.sustain" value="0.5"/>
+    <PARAM id="mod.env3.release" value="0.5"/>
+    <PARAM id="mod.env4.attack" value="0.01"/>
+    <PARAM id="mod.env4.decay" value="0.3"/>
+    <PARAM id="mod.env4.sustain" value="0.5"/>
+    <PARAM id="mod.env4.release" value="0.5"/>
+    <PARAM id="master.gain" value="-6.0"/>
+    <ModMatrix>
+      <!-- LFO1 sine 5.5Hz → pitch: 0.12×0.03×1200 = 4.3 cents natural choir vibrato -->
+      <Route source="0" dest="2" depth="0.03"/>
+      <!-- LFO2 triangle 0.06Hz → filter: 0.2×0.15×10k = 300Hz slow tonal evolution -->
+      <Route source="1" dest="0" depth="0.15"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Body in the Walls" category="fx" tags="horror,organic,trapped"/>
+  <v0idSynthParams>
+    <!-- Poly, six unison voices tuned to a wide minor cluster.
+         LFO1 sine at 0.06Hz — a 16-second inhale/exhale that pulls the amp
+         almost to silence at the bottom of its cycle.
+         LFO3 S+H at 0.4Hz randomly offsets pitch by up to +-200c,
+         making each "breath" land slightly wrong.
+         Env4 attack of 8s: whatever this is, it arrives very slowly.
+         Extreme drift (0.55) means each of the six voices lives on its own
+         slightly wrong pitch — a cluster of somethings, not one thing.
+         Notch at 1200Hz carves a hollow absence from the centre. -->
+    <PARAM id="osc1.waveform" value="3"/>
+    <PARAM id="osc1.drive" value="0.12"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.0"/>
+    <PARAM id="osc2.root_note" value="60"/>
+    <PARAM id="osc2.tune" value="0.0"/>
+    <PARAM id="osc2.loop" value="0"/>
+    <PARAM id="osc2.gain" value="0.0"/>
+    <PARAM id="osc2.hpf" value="20.0"/>
+    <PARAM id="osc2.lpf" value="20000.0"/>
+    <PARAM id="filter.cutoff" value="1200.0"/>
+    <PARAM id="filter.resonance" value="0.72"/>
+    <PARAM id="filter.mode_blend" value="3.0"/>
+    <PARAM id="filter.drive" value="0.15"/>
+    <PARAM id="filter.env_amount" value="0.18"/>
+    <PARAM id="filter.env.attack" value="4.0"/>
+    <PARAM id="filter.env.decay" value="5.0"/>
+    <PARAM id="filter.env.sustain" value="0.42"/>
+    <PARAM id="filter.env.release" value="12.0"/>
+    <PARAM id="amp.env.attack" value="2.5"/>
+    <PARAM id="amp.env.decay" value="0.1"/>
+    <PARAM id="amp.env.sustain" value="1.0"/>
+    <PARAM id="amp.env.release" value="10.0"/>
+    <PARAM id="voice.mode" value="0"/>
+    <PARAM id="voice.glide" value="0.0"/>
+    <PARAM id="voice.unison_voices" value="6"/>
+    <PARAM id="voice.unison_detune" value="0.62"/>
+    <PARAM id="voice.unison_spread" value="0.95"/>
+    <PARAM id="voice.drift" value="0.55"/>
+    <PARAM id="mod.lfo1.rate" value="0.06"/>
+    <PARAM id="mod.lfo1.waveform" value="0"/>
+    <PARAM id="mod.lfo1.depth" value="0.88"/>
+    <PARAM id="mod.lfo2.rate" value="0.092"/>
+    <PARAM id="mod.lfo2.waveform" value="1"/>
+    <PARAM id="mod.lfo2.depth" value="0.52"/>
+    <PARAM id="mod.lfo3.rate" value="0.4"/>
+    <PARAM id="mod.lfo3.waveform" value="4"/>
+    <PARAM id="mod.lfo3.depth" value="0.78"/>
+    <PARAM id="mod.lfo4.rate" value="0.018"/>
+    <PARAM id="mod.lfo4.waveform" value="2"/>
+    <PARAM id="mod.lfo4.depth" value="0.65"/>
+    <PARAM id="mod.env1.attack" value="4.0"/>
+    <PARAM id="mod.env1.decay" value="6.0"/>
+    <PARAM id="mod.env1.sustain" value="0.38"/>
+    <PARAM id="mod.env1.release" value="14.0"/>
+    <PARAM id="mod.env2.attack" value="0.28"/>
+    <PARAM id="mod.env2.decay" value="3.5"/>
+    <PARAM id="mod.env2.sustain" value="0.0"/>
+    <PARAM id="mod.env2.release" value="6.0"/>
+    <PARAM id="mod.env3.attack" value="0.001"/>
+    <PARAM id="mod.env3.decay" value="0.45"/>
+    <PARAM id="mod.env3.sustain" value="0.25"/>
+    <PARAM id="mod.env3.release" value="3.0"/>
+    <PARAM id="mod.env4.attack" value="8.0"/>
+    <PARAM id="mod.env4.decay" value="3.0"/>
+    <PARAM id="mod.env4.sustain" value="0.78"/>
+    <PARAM id="mod.env4.release" value="15.0"/>
+    <PARAM id="master.gain" value="-7.0"/>
+    <ModMatrix>
+      <!-- LFO1 sine 0.06Hz: amp -0.88x0.52=-0.458 — breathing in, nearly silent -->
+      <Route source="0" dest="4" depth="-0.52"/>
+      <!-- LFO2 tri 0.092Hz: notch sweeps 0.52x0.35x10k=1820Hz — hollow moving -->
+      <Route source="1" dest="0" depth="0.35"/>
+      <!-- LFO3 S+H 0.4Hz: pitch 0.78x0.18x1200=168c random jumps — wrong intervals -->
+      <Route source="2" dest="2" depth="0.18"/>
+      <!-- LFO4 saw 0.018Hz: resonance 0.65x0.42x0.5=0.137 rising over 55s -->
+      <Route source="3" dest="1" depth="0.42"/>
+      <!-- Env1: notch sweeps -2200Hz over 4s attack — the hole deepens on note-on -->
+      <Route source="4" dest="0" depth="-0.22"/>
+      <!-- Env2: pitch +82c decaying over 280ms — each note warps upward then settles -->
+      <Route source="5" dest="2" depth="0.068"/>
+      <!-- Env3: resonance +0.22 spike — the notch rings briefly on attack -->
+      <Route source="6" dest="1" depth="0.44"/>
+      <!-- Env4: amp swells 0.28 over 8s — it becomes louder as you wait -->
+      <Route source="7" dest="4" depth="0.28"/>
+      <!-- Drift: pitch scatter 0.55x0.22x1200=145c across 6 voices — never in tune -->
+      <Route source="8" dest="2" depth="0.22"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>

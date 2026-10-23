@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Wrong Number" category="fx" tags="unsettling,telephone,disconnected"/>
+  <v0idSynthParams>
+    <!-- Bandpass centred around 900Hz — the frequency range of an old telephone handset.
+         LFO1 square at 0.8Hz cuts the amp in irregular bursts as if the line
+         keeps dropping. LFO2 sawtooth at 0.034Hz slowly rises the pitch
+         over a 29-second sweep — the carrier frequency drifting.
+         Env1 fires a notch sweep down through 2kHz on every note-on
+         then slowly reopens. Extreme resonance (0.88) makes the filter ring
+         on each amplitude cut. Drive adds the crackle of a corroded circuit. -->
+    <PARAM id="osc1.waveform" value="0"/>
+    <PARAM id="osc1.drive" value="0.65"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.0"/>
+    <PARAM id="osc2.root_note" value="60"/>
+    <PARAM id="osc2.tune" value="0.0"/>
+    <PARAM id="osc2.loop" value="0"/>
+    <PARAM id="osc2.gain" value="0.0"/>
+    <PARAM id="osc2.hpf" value="20.0"/>
+    <PARAM id="osc2.lpf" value="20000.0"/>
+    <PARAM id="filter.cutoff" value="900.0"/>
+    <PARAM id="filter.resonance" value="0.88"/>
+    <PARAM id="filter.mode_blend" value="2.0"/>
+    <PARAM id="filter.drive" value="0.55"/>
+    <PARAM id="filter.env_amount" value="0.35"/>
+    <PARAM id="filter.env.attack" value="0.001"/>
+    <PARAM id="filter.env.decay" value="3.2"/>
+    <PARAM id="filter.env.sustain" value="0.15"/>
+    <PARAM id="filter.env.release" value="5.0"/>
+    <PARAM id="amp.env.attack" value="0.018"/>
+    <PARAM id="amp.env.decay" value="0.08"/>
+    <PARAM id="amp.env.sustain" value="1.0"/>
+    <PARAM id="amp.env.release" value="1.2"/>
+    <PARAM id="voice.mode" value="0"/>
+    <PARAM id="voice.glide" value="0.0"/>
+    <PARAM id="voice.unison_voices" value="3"/>
+    <PARAM id="voice.unison_detune" value="0.08"/>
+    <PARAM id="voice.unison_spread" value="0.28"/>
+    <PARAM id="voice.drift" value="0.38"/>
+    <PARAM id="mod.lfo1.rate" value="0.8"/>
+    <PARAM id="mod.lfo1.waveform" value="3"/>
+    <PARAM id="mod.lfo1.depth" value="0.72"/>
+    <PARAM id="mod.lfo2.rate" value="0.034"/>
+    <PARAM id="mod.lfo2.waveform" value="2"/>
+    <PARAM id="mod.lfo2.depth" value="0.58"/>
+    <PARAM id="mod.lfo3.rate" value="0.17"/>
+    <PARAM id="mod.lfo3.waveform" value="4"/>
+    <PARAM id="mod.lfo3.depth" value="0.44"/>
+    <PARAM id="mod.lfo4.rate" value="4.4"/>
+    <PARAM id="mod.lfo4.waveform" value="0"/>
+    <PARAM id="mod.lfo4.depth" value="0.18"/>
+    <PARAM id="mod.env1.attack" value="0.001"/>
+    <PARAM id="mod.env1.decay" value="3.2"/>
+    <PARAM id="mod.env1.sustain" value="0.15"/>
+    <PARAM id="mod.env1.release" value="5.0"/>
+    <PARAM id="mod.env2.attack" value="0.001"/>
+    <PARAM id="mod.env2.decay" value="0.55"/>
+    <PARAM id="mod.env2.sustain" value="0.0"/>
+    <PARAM id="mod.env2.release" value="1.0"/>
+    <PARAM id="mod.env3.attack" value="0.05"/>
+    <PARAM id="mod.env3.decay" value="2.0"/>
+    <PARAM id="mod.env3.sustain" value="0.45"/>
+    <PARAM id="mod.env3.release" value="3.5"/>
+    <PARAM id="mod.env4.attack" value="0.001"/>
+    <PARAM id="mod.env4.decay" value="0.18"/>
+    <PARAM id="mod.env4.sustain" value="0.0"/>
+    <PARAM id="mod.env4.release" value="0.4"/>
+    <PARAM id="master.gain" value="-5.0"/>
+    <ModMatrix>
+      <!-- LFO1 square 0.8Hz: amp drops by 0.72x0.62=0.446 on each cut — line dropping -->
+      <Route source="0" dest="4" depth="-0.62"/>
+      <!-- LFO2 saw 0.034Hz: pitch rises 0.58x0.065x1200=45c over 29s — carrier drift -->
+      <Route source="1" dest="2" depth="0.065"/>
+      <!-- LFO3 S+H 0.17Hz: filter BP centre jumps 0.44x0.38x10k=1672Hz — tuning instability -->
+      <Route source="2" dest="0" depth="0.38"/>
+      <!-- LFO4 sine 4.4Hz: resonance ripple 0.18x0.22x0.5=0.020 — the line buzzes -->
+      <Route source="3" dest="1" depth="0.22"/>
+      <!-- Env1: filter drops -3500Hz on note-on, reopens over 3.2s -->
+      <Route source="4" dest="0" depth="-0.35"/>
+      <!-- Env2: resonance spike 0.55x0.5=0.275 on attack, clears over 550ms -->
+      <Route source="5" dest="1" depth="0.55"/>
+      <!-- Env3: pitch -28c bend upward resolving over 2s as call stabilises -->
+      <Route source="6" dest="2" depth="-0.023"/>
+      <!-- Env4: amp blip 0.35 on note-on — the click of a relay switching -->
+      <Route source="7" dest="4" depth="0.35"/>
+      <!-- Drift: per-voice pitch scatter 0.38x0.12x1200=55c — three voices never agree -->
+      <Route source="8" dest="2" depth="0.12"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>

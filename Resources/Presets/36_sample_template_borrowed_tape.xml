@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<V0idPreset>
+  <metadata name="Borrowed Tape" category="sample" tags="decayed,morphing,looped"/>
+  <v0idSynthParams>
+    <!-- Load any recording — voice memo, field recording, found sound — and loop it.
+         LFO1 sine at 0.065Hz slowly morphs osc mix between analog saw and sample
+         over a 15-second cycle: the material keeps changing underneath you.
+         LFO3 S+H at 2.5Hz introduces small random pitch shifts, glitching
+         the sample playback speed without fully losing pitch centre.
+         Env3 pushes the mix further toward the sample over time.
+         HPF at 80Hz removes low-end rumble; LPF at 14kHz softens hard transients. -->
+    <PARAM id="osc1.waveform" value="0"/>
+    <PARAM id="osc1.drive" value="0.18"/>
+    <PARAM id="osc2.sample_id" value="0"/>
+    <PARAM id="osc.mix" value="0.55"/>
+    <PARAM id="osc2.root_note" value="60"/>
+    <PARAM id="osc2.tune" value="0.0"/>
+    <PARAM id="osc2.loop" value="1"/>
+    <PARAM id="osc2.gain" value="7.0"/>
+    <PARAM id="osc2.hpf" value="80.0"/>
+    <PARAM id="osc2.lpf" value="14000.0"/>
+    <PARAM id="filter.cutoff" value="2000.0"/>
+    <PARAM id="filter.resonance" value="0.45"/>
+    <PARAM id="filter.mode_blend" value="0.0"/>
+    <PARAM id="filter.drive" value="0.28"/>
+    <PARAM id="filter.env_amount" value="0.28"/>
+    <PARAM id="filter.env.attack" value="3.5"/>
+    <PARAM id="filter.env.decay" value="2.8"/>
+    <PARAM id="filter.env.sustain" value="0.48"/>
+    <PARAM id="filter.env.release" value="7.5"/>
+    <PARAM id="amp.env.attack" value="0.18"/>
+    <PARAM id="amp.env.decay" value="0.12"/>
+    <PARAM id="amp.env.sustain" value="1.0"/>
+    <PARAM id="amp.env.release" value="5.5"/>
+    <PARAM id="voice.mode" value="2"/>
+    <PARAM id="voice.glide" value="0.0"/>
+    <PARAM id="voice.unison_voices" value="2"/>
+    <PARAM id="voice.unison_detune" value="0.18"/>
+    <PARAM id="voice.unison_spread" value="0.55"/>
+    <PARAM id="voice.drift" value="0.14"/>
+    <PARAM id="mod.lfo1.rate" value="0.065"/>
+    <PARAM id="mod.lfo1.waveform" value="0"/>
+    <PARAM id="mod.lfo1.depth" value="0.78"/>
+    <PARAM id="mod.lfo2.rate" value="0.22"/>
+    <PARAM id="mod.lfo2.waveform" value="1"/>
+    <PARAM id="mod.lfo2.depth" value="0.58"/>
+    <PARAM id="mod.lfo3.rate" value="2.5"/>
+    <PARAM id="mod.lfo3.waveform" value="4"/>
+    <PARAM id="mod.lfo3.depth" value="0.42"/>
+    <PARAM id="mod.lfo4.rate" value="0.35"/>
+    <PARAM id="mod.lfo4.waveform" value="0"/>
+    <PARAM id="mod.lfo4.depth" value="0.48"/>
+    <PARAM id="mod.env1.attack" value="4.5"/>
+    <PARAM id="mod.env1.decay" value="3.2"/>
+    <PARAM id="mod.env1.sustain" value="0.55"/>
+    <PARAM id="mod.env1.release" value="8.0"/>
+    <PARAM id="mod.env2.attack" value="0.06"/>
+    <PARAM id="mod.env2.decay" value="0.6"/>
+    <PARAM id="mod.env2.sustain" value="0.0"/>
+    <PARAM id="mod.env2.release" value="1.0"/>
+    <PARAM id="mod.env3.attack" value="0.25"/>
+    <PARAM id="mod.env3.decay" value="2.5"/>
+    <PARAM id="mod.env3.sustain" value="0.38"/>
+    <PARAM id="mod.env3.release" value="6.0"/>
+    <PARAM id="mod.env4.attack" value="0.001"/>
+    <PARAM id="mod.env4.decay" value="0.1"/>
+    <PARAM id="mod.env4.sustain" value="0.0"/>
+    <PARAM id="mod.env4.release" value="0.25"/>
+    <PARAM id="master.gain" value="-4.0"/>
+    <ModMatrix>
+      <!-- LFO1 sine 0.065Hz → osc mix: 0.78×0.38=0.296 slow morph between saw and sample -->
+      <Route source="0" dest="3" depth="0.38"/>
+      <!-- LFO2 tri 0.22Hz → filter: 0.58×0.38×10k=2204Hz breathing ~4.5s cycle -->
+      <Route source="1" dest="0" depth="0.38"/>
+      <!-- LFO3 S+H 2.5Hz → pitch: 0.42×0.018×1200=9¢ glitch — sample speed jitter -->
+      <Route source="2" dest="2" depth="0.018"/>
+      <!-- LFO4 sine 0.35Hz → resonance: 0.48×0.42×0.5=0.101 resonance wave ~2.9s -->
+      <Route source="3" dest="1" depth="0.42"/>
+      <!-- Env1 → filter: up to 6200Hz slow texture reveal over 4.5s attack -->
+      <Route source="4" dest="0" depth="0.62"/>
+      <!-- Env2 → resonance: +0.34 bloom on attack, clears over 600ms -->
+      <Route source="5" dest="1" depth="0.68"/>
+      <!-- Env3 → osc mix: +0.32 push toward sample as note settles, sustains at 38% -->
+      <Route source="6" dest="3" depth="0.32"/>
+      <!-- Env4 → amp: +0.35 snap transient on attack — gives the texture an edge -->
+      <Route source="7" dest="4" depth="0.35"/>
+      <!-- Drift → filter: ±500Hz instability — the tape isn't running clean -->
+      <Route source="8" dest="0" depth="0.05"/>
+    </ModMatrix>
+  </v0idSynthParams>
+</V0idPreset>
