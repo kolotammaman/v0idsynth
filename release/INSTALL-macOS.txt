@@ -1,0 +1,13 @@
+v0idsynth - install on macOS
+
+1. Copy v0idsynth.component to   ~/Library/Audio/Plug-Ins/Components/
+2. Copy v0idsynth.vst3 to        ~/Library/Audio/Plug-Ins/VST3/
+3. Restart your DAW and rescan plug-ins.
+
+These builds are not notarized by Apple, so macOS may refuse to open them the first time.
+If a plug-in does not show up or macOS says it cannot be verified, open Terminal and run:
+
+   xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/Components/v0idsynth.component
+   xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/VST3/v0idsynth.vst3
+
+Source code (AGPL-3.0): https://github.com/kolotammaman/v0idsynth

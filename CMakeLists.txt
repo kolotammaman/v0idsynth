@@ -9,10 +9,10 @@ set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0" CACHE STRING "Minimum macOS version")
 add_subdirectory(JUCE)
 
 juce_add_plugin(v0idsynth
-    COMPANY_NAME                "Lmos"
+    COMPANY_NAME                "madebymolo"
     PLUGIN_MANUFACTURER_CODE    Lmos
     PLUGIN_CODE                 V0sy
-    FORMATS                     AU
+    FORMATS                     AU VST3
     PRODUCT_NAME                "v0idsynth"
     IS_SYNTH                    TRUE
     NEEDS_MIDI_INPUT            TRUE
